@@ -38,16 +38,16 @@ export default function Navigation() {
         { href: "/landing", label: "Home" },
         { href: "/about", label: "About Us" },
         { href: "/services", label: "Our Services" },
-        { href: "/contact", label: "Contact Us" },
+        { href: "/join", label: "Join Us" },
     ];
 
     return (
         <nav
-            className="fixed top-0 w-full z-50 backdrop-blur-md bg-white-90 shadow-sm transition-colors duration-300"
+            className="fixed top-0 w-full z-50 backdrop-blur-md bg-white-90 transition-colors duration-300"
         >
-            <div className="container mx-auto px-6 py-4 flex items-center gap-5">
+            <div className="container mx-auto px-6 py-2 flex items-center gap-5">
                 <div className="flex items-center space-x-2">
-                    <BrandIcon color={textColor} /> {/* icon also adapts */}
+                    <BrandIcon />
                 </div>
 
                 <div className="hidden md:flex gap-4">
@@ -65,18 +65,11 @@ export default function Navigation() {
             </div>
 
             {isMenuOpen && (
-                <div className="md:hidden mt-4 space-y-3 pb-4 px-5">
+                <div className="md:hidden mt-4 space-y-3 pb-4 px-5 flex flex-col">
                     {navItems.map((item) => (
-                        <Button
-                            variant="navtrans"
-                            key={item.id}
-                            onClick={() => scrollToSection(item.id)}
-                            className="w-full text-left justify-start"
-                            style={{ color: textColor }}
-
-                        >
-                            {item.label}
-                        </Button>
+                        <Link key={item.href} href={item.href} passHref>
+                            <Button variant="navtrans" style={{ color: textColor }} className="w-full">{item.label}</Button>
+                        </Link>
                     ))}
                 </div>
             )}

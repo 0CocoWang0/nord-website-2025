@@ -1,61 +1,99 @@
-"use client"
-import BrandIcon from '../BrandIcon';
+'use client';
+import { Button } from "../Buttons";
+import SponsorsGrid from "../SponsorsGrid";
 
-function StatCard({ number, label }) {
+function ServiceCard({ title, description, color }) {
+    const colorClasses = {
+        purple: 'bg-brand-purple text-white',
+        white: 'bg-brand-light text-black shadow-md',
+    };
+
     return (
-        <div className="text-center">
-            <div className="text-4xl lg:text-5xl font-bold text-purple-600 mb-2">{number}</div>
-            <div className="text-xl text-gray-600 font-medium">{label}</div>
+        <div className={`${colorClasses[color]} flex justify-between items-end h-full rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300`}>
+            <h3 className="text-xl font-bold">{title}</h3>
+            {/* <p className="leading-relaxed">→</p >*/}
         </div>
     );
 }
 
-export default function AboutSection() {
-    const stats = [
-        { number: '20+', label: 'Years Experience' },
-        { number: '500+', label: 'Projects Completed' },
-        { number: '95%', label: 'Client Satisfaction' }
+export default function ServicesSection() {
+    const services = [
+        {
+            title: "Market & Industry Research",
+            color: "purple"
+        },
+        {
+            title: "Funding Success",
+            color: "white"
+        },
+        {
+            title: "Growth, Data Structures & Implementation",
+            color: "white"
+        },
+
     ];
 
     return (
-        <section id="about" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
+        <section id="services" className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6 mb-20">
+                <div className="text-left mb-16">
                     <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-                        About Us
+                        Our Services
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        We are a forward-thinking consultancy dedicated to helping organizations achieve their strategic objectives through innovative solutions and expert guidance.
-                    </p>
                 </div>
-
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
-                    {stats.map((stat, index) => (
-                        <StatCard key={index} number={stat.number} label={stat.label} />
-                    ))}
-                </div>
-
-                <div className="bg-purple-50 rounded-3xl p-8 lg:p-16">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h3>
-                            <p className="text-gray-700 mb-6 leading-relaxed">
-                                To empower organizations with strategic insights and innovative solutions that drive sustainable growth and competitive advantage in an ever-evolving business landscape.
-                            </p>
-                            <p className="text-gray-700 leading-relaxed">
-                                We believe in building lasting partnerships with our clients, delivering measurable results through our expertise in strategy, operations, and technology.
-                            </p>
-                        </div>
-                        <div className="bg-white rounded-2xl p-8 shadow-lg">
-                            <div className="text-center">
-                                <BrandIcon />
-                                <h4 className="text-xl font-bold text-gray-900 mt-4 mb-2">Excellence Delivered</h4>
-                                <p className="text-gray-600">Every project, every time</p>
-                            </div>
-                        </div>
+                <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
+                    {/* Left column: single card */}
+                    <div className="md:row-span-2 h-full">
+                        <ServiceCard
+                            title={services[0].title}
+                            description={services[0].description}
+                            color={services[0].color}
+                            className="h-fill"
+                        />
                     </div>
+
+                    {/* Right column: top card */}
+                    <ServiceCard
+                        title={services[1].title}
+                        description={services[1].description}
+                        color={services[1].color}
+                    />
+
+                    {/* Right column: bottom card */}
+                    <ServiceCard
+                        title={services[2].title}
+                        description={services[2].description}
+                        color={services[2].color}
+                    />
                 </div>
             </div>
+
+            <div className="container mx-auto px-6 mb-20">
+                <div className="text-left mb-16">
+                    <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+                        Past Clients
+                    </h2>
+                </div>
+                <SponsorsGrid />
+            </div>
+
+            <div className="w-full flex flex-col sm:flex-row relative h-[30vh]">
+                <Button
+                    variant="solid"
+                    className="flex justify-between items-center w-2/3 absolute left-1/2 bottom-10 -translate-x-1/2 -translate-y-1/2"
+                >
+                    <p>Join Us</p>
+                    <p>→</p>
+                </Button>
+                <div className="flex justify-start sm:w-1/2 h-full w-full">
+                    <img src="/photos/home-clientbg.png" className="w-full h-full object-cover" />
+                </div>
+                <div className="flex flex-1 h-fill bg-brand-purple justify-center p-10">
+                    <p className="text-white text-2xl font-bold h-fit">Are you the bright minds we are looking for?</p>
+                </div>
+
+            </div>
+
         </section>
     );
 }

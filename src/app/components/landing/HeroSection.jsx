@@ -58,15 +58,13 @@ export default function HeroSection() {
 
 
                     <h1 className="text-center text-5xl lg:text-7xl font-bold mb-6 text-white">
-                        Empowering <span className='text-brand-purple-light'>Non-Profits</span> <br /> through Data-Driven Consulting
+                        Empowering <span className='decoration-brand-purple-light underline decoration-dashed'>Non-Profits</span> <br /> through Data-Driven Consulting
                         <br />
 
                     </h1>
-                    <p className="text-xl lg:text-2xl mb-8 text-white leading-relaxed">
-                        Empowering businesses through strategic consulting and innovative solutions
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <PrimaryButton>Learn more →</PrimaryButton>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <PrimaryButton onClick={() => scrollToSection('about')} >Learn more →</PrimaryButton>
                         <SecondaryButton className="text-white" onClick={() => scrollToSection('contact')}>
                             Join Us
                         </SecondaryButton>

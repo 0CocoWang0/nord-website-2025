@@ -16,8 +16,6 @@ export default function Landing() {
             <HeroSection />
             <AboutSection />
             <ServicesSection />
-            <TeamSection />
-            <ContactSection />
             <Footer />
         </div>
     );

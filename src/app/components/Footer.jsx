@@ -1,5 +1,6 @@
 "use client"
 import BrandIcon from './BrandIcon';
+import NordFull from "../../assets/nord_full.svg"
 
 export default function Footer() {
     const scrollToSection = (sectionId) => {
@@ -12,33 +13,34 @@ export default function Footer() {
     const quickLinks = [
         { id: 'home', label: 'Home' },
         { id: 'about', label: 'About Us' },
-        { id: 'services', label: 'Services' },
+        { id: 'joinus', label: 'Join Us' },
         { id: 'contact', label: 'Contact' }
     ];
-
-    const services = [
-        'Strategic Planning',
-        'Market Research',
-        'Operations Excellence',
-        'Digital Transformation'
-    ];
-
-    const connectLinks = [
-        { id: 'home', label: 'Home' },
-        { id: 'about', label: 'About Us' },
-        { id: 'contact', label: 'Projects' }
-    ];
+    /*
+        const services = [
+            'Strategic Planning',
+            'Market Research',
+            'Operations Excellence',
+            'Digital Transformation'
+        ];
+        
+    
+        const connectLinks = [
+            { id: 'home', label: 'Home' },
+            { id: 'about', label: 'About Us' },
+            { id: 'contact', label: 'Projects' }
+        ];
+        */
 
     return (
         <footer className="bg-white py-12 border-t border-gray-200">
             <div className="container mx-auto px-6">
                 <div className="grid md:grid-cols-4 gap-8">
                     <div>
-                        <div className="flex items-center space-x-2 mb-4">
-                            <BrandIcon />
-                            <span className="text-2xl font-bold text-gray-900">NORD</span>
+                        <div className="flex items-center space-x-2 mb-4 w-1/3 text-brand-purple">
+                            <NordFull />
                         </div>
-                        <p className="text-gray-600">© 2023 NORD CONSULTING</p>
+                        <p className="text-gray-600">© 2025 NORD CONSULTING</p>
                     </div>
 
                     <div>
@@ -48,7 +50,7 @@ export default function Footer() {
                                 <li key={link.id}>
                                     <button
                                         onClick={() => scrollToSection(link.id)}
-                                        className="hover:text-purple-600 transition-colors"
+                                        className="hover:text-purple-600 transition-colors cursor-pointer"
                                     >
                                         {link.label}
                                     </button>
@@ -56,7 +58,7 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
-
+                    {/* 
                     <div>
                         <h3 className="font-bold text-gray-900 mb-4">Services</h3>
                         <ul className="space-y-2 text-gray-600">
@@ -87,6 +89,7 @@ export default function Footer() {
                             <span className="text-gray-600">Contact Us</span>
                         </div>
                     </div>
+                    */}
                 </div>
             </div>
         </footer>

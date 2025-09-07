@@ -68,21 +68,10 @@ export default function TeamSection() {
     return (
         <section id="team" className="py-20 bg-white">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
+                <div className="text-left mb-16">
                     <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-                        Executive Team
+                        Testimonials
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Meet the experienced leaders driving our success and your results
-                    </p>
-                </div>
-
-                <div className="mb-16">
-                    <TeamCard
-                        name="Executive Team"
-                        description="We do this and that. A short description of the team's expertise and focus areas."
-                        role="Leadership"
-                    />
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -91,11 +80,6 @@ export default function TeamSection() {
                         author="Somebody's name"
                         date="Jul 2, 2023"
                         role="TEAM THE CASE STUDY"
-                    />
-                    <AlumniCard
-                        title="Alumni's name"
-                        description="Click on here to view the title of the Alumni article"
-                        count="20+"
                     />
                     <TeamMemberCard
                         name="Team member name"
