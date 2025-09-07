@@ -8,7 +8,7 @@ export default function AboutSection() {
     const stats = [
         { number: '20+', label: 'Interdisciplinary Academic Majors', bg: '/photos/library.png' },
         { number: '35+', label: 'Projects Delivered', bg: '/photos/workshop.png' },
-        { number: '1400', label: 'Student Engaged', bg: 'photos/people.png' }
+        { number: '1400+', label: 'Student Engaged', bg: 'photos/people.png' }
     ];
 
     return (

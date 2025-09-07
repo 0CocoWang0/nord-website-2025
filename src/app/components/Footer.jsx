@@ -40,8 +40,18 @@ export default function Footer() {
                         <div className="flex items-center space-x-2 mb-4 w-1/3 text-brand-purple">
                             <NordFull />
                         </div>
-                        <p className="text-gray-600">© 2025 NORD CONSULTING</p>
-                    </div>
+                        <p className="text-gray-600">
+                            © 2025 NORD CONSULTING. <br /> <span className='text-sm text-gray-400'>Designed & developed by{" "}
+                                <a
+                                    href="https://www.linkedin.com/in/magicoco117/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-brand-purple hover:underline"
+                                >
+                                    Keming Wang
+                                </a>
+                                .</span>
+                        </p>                    </div>
 
                     <div>
                         <h3 className="font-bold text-gray-900 mb-4">Quick Links</h3>

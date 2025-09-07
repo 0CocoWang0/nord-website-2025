@@ -12,11 +12,9 @@ export default function Landing() {
         <div
             className="bg-gray-50 text-gray-900 overflow-x-hidden"
             style={{ fontFamily: "Futura, system-ui, sans-serif" }}>
-            <Navigation />
             <HeroSection />
             <AboutSection />
             <ServicesSection />
-            <Footer />
         </div>
     );
 }
