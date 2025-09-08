@@ -48,6 +48,12 @@ const page = () => {
                             Formerly known as the McGill Social Business Network (MSBN), NORD Consulting is McGill’s premier pro-bono consulting practice. For over 10 years, we’ve partnered with 50+ non-profits to deliver data-driven solutions and empower purpose-driven organizations to maximize their impact in the Montreal community.                        </p>
                         <br />
                         <p>At NORD, we believe in learning by doing — tackling real-world challenges with innovation, professionalism, and impact. As a member, you’ll gain hands-on consulting experience, professional training, and the chance to make a meaningful difference.</p>
+                        <Button variant={"solid"} className="cursor-alias font-bold">🗓️ Deadline: September 19th, 11:59 PM</Button>
+                        <Button variant={"solid"} onClick={() => window.open("https://www.instagram.com/nord.mcgill/", "_blank")}>
+                            <div className='flex gap-2'><img src='/icons/ins.svg' className='w-5 h-5 object-contain' />@nord.mcgill</div>
+                            →
+                        </Button>
+
                     </div>
                     <JobCardWithTyping />
                 </div>

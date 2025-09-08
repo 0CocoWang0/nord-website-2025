@@ -9,9 +9,7 @@ const JobCard = ({ img, title, children }) => {
                         {img}
                     </div>
                 </div>
-                <div className="h-15">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
                 <div>{children}</div>
             </div>
         </div>

@@ -129,3 +129,6 @@ body,
 * {
   /* outline: 1px solid red; */
 }
+.cursor-alias {
+  cursor: default !important; /* Forces the cursor to not be a pointer */
+}
