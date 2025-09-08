@@ -2,27 +2,12 @@
 
 import { PrimaryButton, SecondaryButton } from '../Buttons';
 import Link from 'next/link';
+import ParallaxContainer from '../ParallaxBox';
 
 export default function HeroSection() {
-    const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
-        <section
-            id="home"
-            className="min-h-screen flex items-center relative overflow-hidden pt-16"
-            style={{
-                backgroundImage: "url('/photos/herobg.png')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundAttachment: 'fixed', // makes it stick while scrolling
-            }}
-        >
-            <div className="container mx-auto px-6 relative z-10 text-center">
+        <ParallaxContainer backgroundSrc="/photos/herobg.png" className="min-h-screen justify-center flex items-center pt-16">
+            <div className="container mx-auto px-6 text-center">
                 <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white">
                     Empowering{' '}
                     <span className="decoration-brand-purple-light underline decoration-dashed">
@@ -43,6 +28,6 @@ export default function HeroSection() {
                     </Link>
                 </div>
             </div>
-        </section>
+        </ParallaxContainer>
     );
 }
