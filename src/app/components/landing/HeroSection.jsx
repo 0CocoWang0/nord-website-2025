@@ -1,6 +1,7 @@
 'use client';
 
 import { PrimaryButton, SecondaryButton } from '../Buttons';
+import Link from 'next/link';
 
 export default function HeroSection() {
     const scrollToSection = (sectionId) => {
@@ -34,9 +35,12 @@ export default function HeroSection() {
                     <PrimaryButton onClick={() => scrollToSection('about')}>
                         Learn more →
                     </PrimaryButton>
-                    <SecondaryButton className="text-white" onClick={() => scrollToSection('contact')}>
-                        Join Us
-                    </SecondaryButton>
+
+                    <Link href={"/join"}>
+                        <SecondaryButton className="text-white">
+                            Join Us
+                        </SecondaryButton>
+                    </Link>
                 </div>
             </div>
         </section>

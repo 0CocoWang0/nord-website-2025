@@ -1,6 +1,7 @@
 "use client"
 import BrandIcon from './BrandIcon';
 import NordFull from "../../assets/nord_full.svg"
+import Link from 'next/link';
 
 export default function Footer() {
     const scrollToSection = (sectionId) => {
@@ -11,10 +12,10 @@ export default function Footer() {
     };
 
     const quickLinks = [
-        { id: 'home', label: 'Home' },
-        { id: 'about', label: 'About Us' },
-        { id: 'joinus', label: 'Join Us' },
-        { id: 'contact', label: 'Contact' }
+        { href: '/landing', label: 'Home' },
+        //{ id: 'about', label: 'About Us' },
+        { href: '/join', label: 'Join Us' },
+        //{ id: 'contact', label: 'Contact' }
     ];
     /*
         const services = [
@@ -57,13 +58,13 @@ export default function Footer() {
                         <h3 className="font-bold text-gray-900 mb-4">Quick Links</h3>
                         <ul className="space-y-2 text-gray-600">
                             {quickLinks.map((link) => (
-                                <li key={link.id}>
-                                    <button
-                                        onClick={() => scrollToSection(link.id)}
-                                        className="hover:text-purple-600 transition-colors cursor-pointer"
+                                <li key={link.href}>
+                                    <Link
+                                        href={link.href}
+                                        className="hover:text-brand-purple transition-colors"
                                     >
                                         {link.label}
-                                    </button>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

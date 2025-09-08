@@ -22,7 +22,7 @@ export default function AboutSection() {
                         <p className="text-black">
                             We are a forward-thinking consultancy dedicated to helping organizations achieve their strategic objectives through innovative solutions and expert guidance.
                         </p>
-                        <Button variant={"ghost"} className="w-fit">Learn more →</Button>
+                        {/*<Button variant={"ghost"} className="w-fit">Learn more →</Button >*/}
                     </div>
                     <div className="flex-1 h-fill bg-brand-purple p-10 lg:p-20 text-white flex justify-center items-center object-cover">
                         <NordFull />

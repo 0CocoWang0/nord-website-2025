@@ -1,6 +1,7 @@
 'use client';
 import { Button } from "../Buttons";
 import SponsorsGrid from "../SponsorsGrid";
+import Link from "next/link";
 
 function ServiceCard({ title, description, color }) {
     const colorClasses = {
@@ -78,13 +79,15 @@ export default function ServicesSection() {
             </div>
 
             <div className="w-full flex flex-col sm:flex-row relative h-[30vh]">
-                <Button
-                    variant="solid"
-                    className="flex justify-between items-center w-2/3 absolute left-1/2 bottom-10 -translate-x-1/2 -translate-y-1/2"
-                >
-                    <p>Join Us</p>
-                    <p>→</p>
-                </Button>
+                <Link href={"/join"}>
+                    <Button
+                        variant="solid"
+                        className="flex justify-between items-center w-2/3 absolute left-1/2 bottom-10 -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <p>Join Us</p>
+                        <p>→</p>
+                    </Button>
+                </Link>
                 <div className="flex justify-start sm:w-1/2 h-full w-full">
                     <img src="/photos/home-clientbg.png" className="w-full h-full object-cover" />
                 </div>
