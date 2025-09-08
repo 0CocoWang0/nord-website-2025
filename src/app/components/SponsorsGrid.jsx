@@ -8,14 +8,14 @@ const sponsorLogos = require
 
 export default function SponsorsGrid() {
     return (
-        <div className="flex flex-wrap gap-20 justify-center">
+        <div className="grid grid-cols-4 sm:grid-cols-6 gap-6 justify-items-center items-center">
             {sponsorLogos.map((src, i) => (
                 <Image
                     key={i}
                     src={src}
                     alt={`Sponsor ${i + 1}`}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     className="object-contain hover:scale-110 transition-all duration-300"
                 />
             ))}

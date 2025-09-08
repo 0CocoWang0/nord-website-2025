@@ -1,23 +1,31 @@
-"use client"
-import React from 'react'
+'use client';
+import React from 'react';
+import Image from 'next/image';
 
-const StatCard = ({ number, label, bg }) => {
+const StatCard = ({ number, label, bg, darkOverlay = true }) => {
     return (
-        <div
-            className="flex flex-col justify-between h-80 p-5 rounded-2xl bg-cover bg-center"
-            style={{
-                backgroundImage: `
-                    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(136,73,152,0)),
-                    url(${bg})
-                `
-            }}
-        >
-            <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{number}</div>
-            <div className='bg-white rounded-2xl flex justify-center items-center p-5 h-1/3'>
-                <p className="h-fit text-black font-bold text-center">{label}</p>
+        <div className="relative flex flex-col justify-between h-80 p-5 rounded-2xl overflow-hidden">
+            {/* Background image */}
+            <Image
+                src={bg}
+                alt={label}
+                fill
+                className="object-cover object-center"
+                priority
+            />
+
+            {/* Optional dark gradient overlay */}
+            {darkOverlay && (
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 z-2" />
+            )}
+
+            {/* Content */}
+            <div className="relative z-10 text-white flex flex-col h-full justify-between">
+                <div className="text-4xl lg:text-5xl font-bold mb-2">{number}</div>
+                <h3 className="text-xl font-bold">{label}</h3>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default StatCard
+export default StatCard;

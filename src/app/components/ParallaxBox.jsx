@@ -3,7 +3,13 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function ParallaxContainer({ backgroundSrc, children, speed = 0.3, className = '' }) {
+export default function ParallaxContainer({
+    backgroundSrc,
+    children,
+    speed = 0.3,
+    className = '',
+    darkOverlay = false, // new prop
+}) {
     const bgRef = useRef(null);
 
     useEffect(() => {
@@ -28,6 +34,7 @@ export default function ParallaxContainer({ backgroundSrc, children, speed = 0.3
 
     return (
         <section className={`relative overflow-hidden ${className}`}>
+            {/* Parallax background */}
             <div
                 ref={bgRef}
                 className="absolute inset-0"
@@ -41,6 +48,13 @@ export default function ParallaxContainer({ backgroundSrc, children, speed = 0.3
                     priority
                 />
             </div>
+
+            {/* Optional dark overlay */}
+            {darkOverlay && (
+                <div className="absolute inset-0 bg-black/20 z-0" />
+            )}
+
+            {/* Content */}
             <div className="relative z-10">
                 {children}
             </div>

@@ -20,11 +20,12 @@ const Page = () => {
                 backgroundSrc="/photos/team.JPG"
                 className="min-h-screen justify-center flex items-center pt-16"
                 speed={0.5} // adjust parallax speed if needed
+                darkOverlay={true}
             >
                 <div className="container mx-auto px-6 relative z-10 text-left">
-                    <h2 className="text-4xl lg:text-7xl font-bold mb-6 text-white">
+                    <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white">
                         Are you the bright minds we are seeking?
-                    </h2>
+                    </h1>
                     <div className="flex flex-col sm:flex-row gap-4 justify-start mt-6">
                         <PrimaryButton
                             onClick={() =>
