@@ -3,7 +3,12 @@
 import { PrimaryButton, SecondaryButton } from '../Buttons';
 import Link from 'next/link';
 import ParallaxContainer from '../ParallaxBox';
-
+const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+};
 export default function HeroSection() {
     return (
         <ParallaxContainer backgroundSrc="/photos/herobg.png" className="min-h-screen justify-center flex items-center pt-16">
