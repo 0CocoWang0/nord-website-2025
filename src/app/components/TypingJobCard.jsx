@@ -46,8 +46,13 @@ const JobCardWithTyping = () => {
                 </span>
             }
         >
-            <Button variant="primary" onClick={() => window.open("https://forms.gle/TDpygfDkcUYwmCLD8", "_blank")}>Apply now</Button>
+            {/*  <Button variant="primary" onClick={() => window.open("https://forms.gle/TDpygfDkcUYwmCLD8", "_blank")}>Apply now</Button>*/}
+            <Button
 
+                variant="primary" className="pointer-events-none"
+            >
+                Application Closed
+            </Button>
             {/* Tailwind CSS doesn't have a built-in blinking cursor, so add custom style */}
             <style jsx>{`
         .typing-bar {

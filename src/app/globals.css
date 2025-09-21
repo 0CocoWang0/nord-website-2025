@@ -34,8 +34,10 @@
   --font-raleway: "Raleway", system-ui, sans-serif;
 
   /* === Font Sizes (with line-height + weight) === */
-  --text-h1: 50px;
-  --leading-h1: 1.2;
+  --text-h1-sm: 48px; /* Mobile */
+  --text-h1-md: 64px; /* Tablet */
+  --text-h1-lg: 80px;
+  --leading-h1: 1.1;
   --font-weight-h1: 700;
 
   --text-h2: 32px;
@@ -111,6 +113,31 @@ h6 {
 }
 p {
   font-family: var(--font-body);
+}
+h1 {
+  font-size: var(--text-h1-sm);
+  line-height: var(--leading-h1);
+  font-weight: var(--font-weight-h1);
+  margin-bottom: 1rem;
+}
+
+/* Add media queries */
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--text-h1-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: var(--text-h1-lg);
+  }
+}
+h2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  font-weight: var(--font-weight-h2);
+  margin-bottom: 1rem;
 }
 
 /* === Default body style === */

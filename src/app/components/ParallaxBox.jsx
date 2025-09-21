@@ -51,7 +51,7 @@ export default function ParallaxContainer({
 
             {/* Optional dark overlay */}
             {darkOverlay && (
-                <div className="absolute inset-0 bg-black/20 z-0" />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-purple-dark/20 to-brand-purple/100 z-1" />
             )}
 
             {/* Content */}

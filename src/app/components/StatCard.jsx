@@ -14,14 +14,14 @@ const StatCard = ({ number, label, bg, darkOverlay = true }) => {
                 priority
             />
 
-            {/* Optional dark gradient overlay */}
+            {/* Brand purple gradient overlay */}
             {darkOverlay && (
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 z-2" />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-purple-dark/100 to-brand-purple/50 z-2" />
             )}
 
             {/* Content */}
             <div className="relative z-10 text-white flex flex-col h-full justify-between">
-                <div className="text-4xl lg:text-5xl font-bold mb-2">{number}</div>
+                <div className="text-7xl md:text-5xl lg:text-7xl font-bold mb-2 ">{number}</div>
                 <h3 className="text-xl font-bold">{label}</h3>
             </div>
         </div>

@@ -10,7 +10,7 @@ import Footer from "../components/Footer.jsx";
 export default function Landing() {
     return (
         <div
-            className="bg-gray-50 text-gray-900 overflow-x-hidden"
+            className="bg-white text-gray-900 overflow-x-hidden"
             style={{ fontFamily: "Futura, system-ui, sans-serif" }}>
             <HeroSection />
             <AboutSection />

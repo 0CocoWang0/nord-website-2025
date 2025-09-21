@@ -4,6 +4,7 @@ import { PrimaryButton, Button } from '../components/Buttons';
 import JobCardWithTyping from '../components/TypingJobCard';
 import Image from 'next/image';
 import ParallaxContainer from '../components/ParallaxBox';
+import { FadeInBlur } from '../components/animations/FadeInBlur';
 
 const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -18,24 +19,21 @@ const Page = () => {
             {/* Hero Section with Parallax */}
             <ParallaxContainer
                 backgroundSrc="/photos/team.JPG"
-                className="min-h-screen justify-center flex items-center pt-16"
+                className="h-[70vh] justify-center flex items-center pt-16"
                 speed={0.5} // adjust parallax speed if needed
                 darkOverlay={true}
             >
-                <div className="container mx-auto px-6 relative z-10 text-left">
-                    <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white">
-                        Are you the bright minds we are seeking?
-                    </h1>
+                <div className="container px-20 relative z-10 text-left">
+                    <FadeInBlur className='-translate-y-20'>
+                        <h1 className="font-bold mb-6 text-white">
+                            Are you the bright minds we are seeking?
+                        </h1>
+                    </FadeInBlur>
                     <div className="flex flex-col sm:flex-row gap-4 justify-start mt-6">
                         <PrimaryButton
-                            onClick={() =>
-                                window.open(
-                                    'https://forms.gle/TDpygfDkcUYwmCLD8',
-                                    '_blank'
-                                )
-                            }
+                            className="pointer-events-none"
                         >
-                            Apply Now →
+                            Application Closed
                         </PrimaryButton>
                     </div>
                 </div>

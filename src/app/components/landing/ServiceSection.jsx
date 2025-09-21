@@ -2,6 +2,7 @@
 import { Button } from "../Buttons";
 import SponsorsGrid from "../SponsorsGrid";
 import Link from "next/link";
+import { FadeInBlur } from "../animations/FadeInBlur";
 
 function ServiceCard({ title, description, color }) {
     const colorClasses = {
@@ -35,10 +36,10 @@ export default function ServicesSection() {
     ];
 
     return (
-        <section id="services" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6 mb-20">
+        <section id="services&client" className="py-20 ">
+            <div className="container mx-auto px-6 mb-20 bg-brand-light">
                 <div className="text-left mb-16">
-                    <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+                    <h2 className="font-bold mb-6 text-gray-900">
                         Our Services
                     </h2>
                 </div>
@@ -92,7 +93,9 @@ export default function ServicesSection() {
                     <img src="/photos/home-clientbg.png" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-1 h-fill bg-brand-purple justify-center p-10">
-                    <p className="text-white text-2xl font-bold h-fit">Are you the bright minds we are looking for?</p>
+                    <FadeInBlur delay={50} className="inline-block -translate-y-20">
+                        <p className="text-white text-2xl font-bold h-fit">Are you the bright minds we are looking for?</p>
+                    </FadeInBlur>
                 </div>
 
             </div>
