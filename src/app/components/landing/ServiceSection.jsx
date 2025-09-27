@@ -1,104 +1,148 @@
 'use client';
 import { Button } from "../Buttons";
-import SponsorsGrid from "../SponsorsGrid";
 import Link from "next/link";
-import { FadeInBlur } from "../animations/FadeInBlur";
+import Clients from "./Clients";
+import { useState } from "react";
+import NordFull from "../../../assets/nord_full.svg";
 
-function ServiceCard({ title, description, color }) {
-    const colorClasses = {
-        purple: 'bg-brand-purple text-white',
-        white: 'bg-brand-light text-black shadow-md',
-    };
 
-    return (
-        <div className={`${colorClasses[color]} flex justify-between items-end h-full rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300`}>
-            <h3 className="text-xl font-bold">{title}</h3>
-            {/* <p className="leading-relaxed">→</p >*/}
-        </div>
-    );
-}
 
+const services = [
+    {
+        title: "Consulting",
+        description:
+            "Our consulting practice provides pro-bono, data-driven solutions tailored to the unique needs of non-profits and social enterprises. From volunteer management and funding diversification to program redesign and impact measurement, our teams work closely with clients to translate complex challenges into actionable strategies. Every project delivers practical recommendations supported by rigorous analysis, strengthening organizational capacity and creating lasting social value.",
+        background: "/photos/servicebg.png",
+        link: "/services/",
+    },
+    {
+        title: "Research",
+        description:
+            "Launched in 2024, our research initiative leverages project experience and data expertise to generate sector-wide insights. Through reports and analyses, we equip Montreal’s non-profit community with the tools to track, evaluate, and amplify their impact.",
+        background: "/photos/servicebg.png",
+        link: "/services/",
+    },
+    {
+        title: "Community Service",
+        description:
+            "Beyond consulting, we actively contribute to the city’s social innovation ecosystem by volunteering our time, sharing resources, and co-creating data solutions that drive collective progress.",
+        background: "/photos/servicebg.png",
+        link: "/services/",
+    },
+    {
+        title: "Training",
+        description:
+            "We partner with leading firms such as McKinsey, KPMG, Deloitte, and Accenture to bring exclusive workshops and training sessions led by industry professionals. These experiences equip our members with the skills to tackle real-world problems, deliver data-driven insights, and grow as collaborative teammates and future leaders.",
+        background: "/photos/servicebg.png",
+        link: "/services/",
+    },
+    {
+        title: "Events",
+        description:
+            "Every year, NORD Consulting hosts conferences that bring students together with industry leaders. Notable initiatives include Being Black in Consulting, fostering dialogue on diversity and inclusion, and creating meaningful networking opportunities for students with top consulting firms.",
+        background: "/photos/servicebg.png",
+        link: "/services/",
+    },
+];
 export default function ServicesSection() {
-    const services = [
-        {
-            title: "Market & Industry Research",
-            color: "purple"
-        },
-        {
-            title: "Funding Success",
-            color: "white"
-        },
-        {
-            title: "Growth, Data Structures & Implementation",
-            color: "white"
-        },
-
-    ];
+    const [selected, setSelected] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <section id="services&client" className="py-20 ">
-            <div className="container mx-auto px-6 mb-20 bg-brand-light">
-                <div className="text-left mb-16">
-                    <h2 className="font-bold mb-6 text-gray-900">
-                        Our Services
-                    </h2>
-                </div>
-                <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
-                    {/* Left column: single card */}
-                    <div className="md:row-span-2 h-full">
-                        <ServiceCard
-                            title={services[0].title}
-                            description={services[0].description}
-                            color={services[0].color}
-                            className="h-fill"
-                        />
+        <section id="services" className="py-20 ">
+            <div className=" mb-20 bg-brand-purple-light h-full">
+                <div className="md:flex-row flex flex-col">
+                    <div className="text-left flex flex-col mb-16 text-black md:w-1/2 w-full p-10">
+                        <h2 className="font-bold mb-6 ">
+                            Our Services
+                        </h2>
+                        <p className="mb-6">We empowering non-profits and social innovators through data-driven consulting, actionable research, community engagement, expert training, and industry-leading events.</p>
+
+                        {/* Left: Dropdown / List of choices */}
+                        <div className="relative w-2/3">
+                            <div className={`flex w-full justify-between border border-gray-300 rounded-2xl px-5 py-2 cursor-pointer ${selected ? "bg-brand-purple text-white" : "text-gray-500"}`}
+                                onClick={() => setIsOpen(!isOpen)}
+                            >
+                                <span>{selected ? selected.title : "Select a service..."}</span>
+                                {/* Arrow */}
+                                <span
+                                    className={`ml-2 transition-transform duration-300 ${isOpen ? "rotate-90" : "rotate-0"
+                                        }`}
+                                >
+                                    →
+                                </span>
+                            </div>
+
+                            {isOpen && (
+                                <div className="absolute top-full left-0 w-full mt-1 bg-white border border-gray-300 rounded-xl shadow-lg z-10">
+                                    {services.map((service) => (
+                                        <div
+                                            key={service.title}
+                                            className={`m-2 px-4 py-2 rounded-2xl cursor-pointer transition-all duration-300 ${selected?.title === service.title ? "bg-brand-purple text-white" : " hover:bg-gray-100"
+                                                }`}
+                                            onClick={() => {
+                                                setSelected(service);
+                                                setIsOpen(false);
+                                            }}
+                                        >
+                                            {service.title}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+
+                        <Link href={"/services"} className="w-full flex justify-start mt-10">
+                            <Button
+                                variant="primary" className="px-6 py-3"
+                            >
+                                See how we specialize →
+                            </Button>
+                        </Link>
                     </div>
-
-                    {/* Right column: top card */}
-                    <ServiceCard
-                        title={services[1].title}
-                        description={services[1].description}
-                        color={services[1].color}
-                    />
-
-                    {/* Right column: bottom card */}
-                    <ServiceCard
-                        title={services[2].title}
-                        description={services[2].description}
-                        color={services[2].color}
-                    />
-                </div>
-            </div>
-
-            <div className="container mx-auto px-6 mb-20">
-                <div className="text-left mb-16">
-                    <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-                        Past Clients
-                    </h2>
-                </div>
-                <SponsorsGrid />
-            </div>
-
-            <div className="w-full flex flex-col sm:flex-row relative h-[30vh]">
-                <Link href={"/join"}>
-                    <Button
-                        variant="solid"
-                        className="flex justify-between items-center w-2/3 absolute left-1/2 bottom-10 -translate-x-1/2 -translate-y-1/2"
+                    {/* Right: Description of selected choice */}
+                    <div
+                        className={`${selected ? "p-10 px-20" : "p-0"} w-full md:w-2/3 h-fill flex flex-col justify-end rounded-xl overflow-hidden`}
+                        style={{
+                            backgroundImage: selected ? `url(${selected.background})` : "none",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundColor: selected ? "transparent" : "none", // fallback bg when nothing selected
+                        }}
                     >
-                        <p>Join Us</p>
-                        <p>→</p>
-                    </Button>
-                </Link>
-                <div className="flex justify-start sm:w-1/2 h-full w-full">
-                    <img src="/photos/home-clientbg.png" className="w-full h-full object-cover" />
-                </div>
-                <div className="flex flex-1 h-fill bg-brand-purple justify-center p-10">
-                    <FadeInBlur delay={50} className="inline-block -translate-y-20">
-                        <p className="text-white text-2xl font-bold h-fit">Are you the bright minds we are looking for?</p>
-                    </FadeInBlur>
-                </div>
 
+                        {selected ? (
+
+                            <div className="bg-white/70 p-10 rounded-xl h-fit flex flex-col text-black backdrop-blur-xs">
+                                <div>
+                                    <p className="text-2xl font-medium mb-4">{selected.title}</p>
+                                    <p className="mb-6">{selected.description}</p>
+                                </div>
+                                <Link href={selected.link} className="w-full flex justify-end">
+                                    <Button variant="primary" className="px-6 py-3">
+                                        View More →
+                                    </Button>
+                                </Link>
+                            </div>
+                        ) : (
+
+                            /*     <div className="h-full w-full rounded-xl mb-4 flex items-center justify-center">
+                            <div className="flex items-center space-x-2 w-1/2 text-brand-purple">
+                                <NordFull />
+                            </div>
+                            </div> */
+                            <img src="/photos/sample.png" className="h-full w-full object-cover" />
+
+                        )}
+                    </div>
+                </div>
             </div>
+
+
+
+
+            <Clients />
 
         </section>
     );

@@ -3,13 +3,13 @@ import BrandIcon from '../BrandIcon';
 import StatCard from "../StatCard"
 import NordFull from "../../../assets/nord_full.svg";
 import { Button } from '../Buttons';
-import { FadeInBlur } from '../animations/FadeInBlur';
-
+import { FadeInBlur, StaggeredFadeIn } from '../animations/FadeInBlur';
+import SimpleStatsCard from '../SimpleStatsCard';
 export default function AboutSection() {
     const stats = [
-        { number: '20+', label: 'Interdisciplinary Academic Majors', bg: '/photos/library.png' },
-        { number: '35+', label: 'Projects Delivered', bg: '/photos/workshop.png' },
-        { number: '1400+', label: 'Student Engaged', bg: '/photos/people.png' }
+        { number: '20', label: 'Interdisciplinary Academic Majors', bg: '/photos/library.png' },
+        { number: '35', label: 'Projects Delivered', bg: '/photos/workshop.png' },
+        { number: '1400', label: 'Student Engaged', bg: '/photos/people.png' }
     ];
 
     return (
@@ -36,9 +36,9 @@ export default function AboutSection() {
             <div className="flex flex-col text-left w-full px-6 gap-10">
                 <div className="grid md:grid-cols-3 gap-8 sm:px-20">
                     {stats.map((stat, index) => (
-                        <FadeInBlur key={index} className='-translate-y-20'>
-                            <StatCard number={stat.number} label={stat.label} bg={stat.bg} darkOverlay={true} />
-                        </FadeInBlur>
+                        <StaggeredFadeIn key={index} className=''>
+                            <SimpleStatsCard number={stat.number} label={stat.label} />
+                        </StaggeredFadeIn>
                     ))}
                 </div>
             </div>

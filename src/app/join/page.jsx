@@ -21,7 +21,7 @@ const Page = () => {
                 backgroundSrc="/photos/team.JPG"
                 className="h-[70vh] justify-center flex items-center pt-16"
                 speed={0.5} // adjust parallax speed if needed
-                darkOverlay={true}
+                darkOverlay={false}
             >
                 <div className="container px-20 relative z-10 text-left">
                     <FadeInBlur className='-translate-y-20'>
