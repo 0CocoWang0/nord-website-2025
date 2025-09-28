@@ -27,9 +27,9 @@ const StatCard = ({ number, label }) => {
         requestAnimationFrame(step);
     }, [inView, number, 1500])
     return (
-        <div ref={ref} className="relative flex flex-col items-center p-5 rounded-2xl overflow-hidden">
+        <div ref={ref} className="relative flex flex-col items-center p-5 rounded-2xl overflow-hidden justify-start">
             {/* Content */}
-            <div className="relative z-10 text-brand-navy flex flex-col h-full justify-center">
+            <div className="relative z-10 text-brand-navy flex flex-col h-full w-full md:w-fit">
                 <div className="text-7xl md:text-5xl lg:text-7xl font-bold mb-2">{count}+</div>
                 <h3 className="text-xl">{label}</h3>
             </div>
