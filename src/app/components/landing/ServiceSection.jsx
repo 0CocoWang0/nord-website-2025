@@ -12,35 +12,35 @@ const services = [
         title: "Consulting",
         description:
             "Our consulting practice provides pro-bono, data-driven solutions tailored to the unique needs of non-profits and social enterprises. From volunteer management and funding diversification to program redesign and impact measurement, our teams work closely with clients to translate complex challenges into actionable strategies. Every project delivers practical recommendations supported by rigorous analysis, strengthening organizational capacity and creating lasting social value.",
-        background: "/photos/servicebg.png",
+        background: "/photos/consulting-bg.jpg",
         link: "/services/",
     },
     {
         title: "Research",
         description:
             "Launched in 2024, our research initiative leverages project experience and data expertise to generate sector-wide insights. Through reports and analyses, we equip Montreal’s non-profit community with the tools to track, evaluate, and amplify their impact.",
-        background: "/photos/servicebg.png",
+        background: "/photos/research-bg.jpg",
         link: "/services/",
     },
     {
         title: "Community Service",
         description:
             "Beyond consulting, we actively contribute to the city’s social innovation ecosystem by volunteering our time, sharing resources, and co-creating data solutions that drive collective progress.",
-        background: "/photos/servicebg.png",
+        background: "/photos/community-bg.png",
         link: "/services/",
     },
     {
         title: "Training",
         description:
             "We partner with leading firms such as McKinsey, KPMG, Deloitte, and Accenture to bring exclusive workshops and training sessions led by industry professionals. These experiences equip our members with the skills to tackle real-world problems, deliver data-driven insights, and grow as collaborative teammates and future leaders.",
-        background: "/photos/servicebg.png",
+        background: "/photos/training-bg.jpg",
         link: "/services/",
     },
     {
         title: "Events",
         description:
             "Every year, NORD Consulting hosts conferences that bring students together with industry leaders. Notable initiatives include Being Black in Consulting, fostering dialogue on diversity and inclusion, and creating meaningful networking opportunities for students with top consulting firms.",
-        background: "/photos/servicebg.png",
+        background: "/photos/event-bg.png",
         link: "/services/",
     },
 ];
@@ -52,7 +52,7 @@ export default function ServicesSection() {
         <section id="services" className="py-20 ">
             <div className=" mb-20 bg-brand-purple-light h-full">
                 <div className="md:flex-row flex flex-col">
-                    <div className="text-left flex flex-col mb-16 text-black md:w-1/2 w-full p-10">
+                    <div className="text-left flex flex-col text-black md:w-1/2 w-full p-10">
                         <h2 className="font-bold mb-6 ">
                             Our Services
                         </h2>
@@ -93,9 +93,9 @@ export default function ServicesSection() {
                         </div>
 
 
-                        <Link href={"/services"} className="w-full flex justify-start mt-10">
+                        <Link href={"/services"} className="w-fit flex justify-start mt-10">
                             <Button
-                                variant="primary" className="px-6 py-3"
+                                variant="secondary" className="px-6 py-3"
                             >
                                 See how we specialize →
                             </Button>
@@ -103,7 +103,7 @@ export default function ServicesSection() {
                     </div>
                     {/* Right: Description of selected choice */}
                     <div
-                        className={`${selected ? "p-10 px-20" : "p-0"} w-full md:w-2/3 h-fill flex flex-col justify-end rounded-xl overflow-hidden`}
+                        className={`${selected ? "p-10 sm:px-20" : "p-0"} w-full md:w-2/3 min-h-[50vh] flex flex-col justify-end rounded-xl overflow-hidden`}
                         style={{
                             backgroundImage: selected ? `url(${selected.background})` : "none",
                             backgroundSize: "cover",

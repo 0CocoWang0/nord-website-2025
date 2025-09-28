@@ -1,20 +1,14 @@
 'use client';
-import React from 'react';
-import { PrimaryButton, Button } from '../components/Buttons';
-import JobCardWithTyping from '../components/TypingJobCard';
-import Image from 'next/image';
+import React, { useRef } from 'react';
+import { Button } from '../components/Buttons';
 import ParallaxContainer from '../components/ParallaxBox';
 import { FadeInBlur, StaggeredFadeIn } from '../components/animations/FadeInBlur';
-import { ArrowRight, Users, BarChart3, Heart, GraduationCap, Calendar } from 'lucide-react';
+import { Users, BarChart3, Heart, GraduationCap, Calendar } from 'lucide-react';
 import Link from 'next/link';
-import StatCard from '../components/StatCard';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import MotionSection from '../components/animations/MotionSection';
 
-const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-};
+
 
 const services = [
     {
@@ -30,7 +24,7 @@ const services = [
             'Impact Measurement Frameworks',
             'Organizational Capacity Building'
         ],
-        bgImage: '/photos/herobg.png'
+        bgImage: "/photos/consulting-bg.jpg",
     },
     {
         id: 'research',
@@ -45,7 +39,7 @@ const services = [
             'Best Practice Documentation',
             'Impact Evaluation Tools'
         ],
-        bgImage: '/photos/servicebg.png'
+        bgImage: "/photos/research-bg.jpg",
     },
     {
         id: 'community',
@@ -60,7 +54,7 @@ const services = [
             'Social Innovation Projects',
             'Community Partnership Building'
         ],
-        bgImage: '/photos/people.png'
+        bgImage: '/photos/community-bg.png'
     },
     {
         id: 'training',
@@ -75,7 +69,7 @@ const services = [
             'Leadership Development',
             'Professional Standards Excellence'
         ],
-        bgImage: '/photos/workshop.png'
+        bgImage: "/photos/training-bg.jpg",
     },
     {
         id: 'events',
@@ -90,14 +84,21 @@ const services = [
             'Student-Industry Connections',
             'Career Development Workshops'
         ],
-        bgImage: '/photos/home-clientbg.png'
+        bgImage: "/photos/event-bg.png",
     }
 ];
 
 
 const Page = () => {
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     return (
-        <div>
+
+        <div className='bg-white'>
             {/* Hero Section with Parallax */}
             <ParallaxContainer
                 backgroundSrc="/photos/servicebg.png"
@@ -118,7 +119,7 @@ const Page = () => {
             </ParallaxContainer>
 
             {/* Services Overview */}
-            <section className="py-20 bg-brand-purple">
+            <section id='consulting' className="py-20 bg-brand-purple">
                 <div className="container mx-auto px-6">
                     <FadeInBlur delay={0} className="text-left mb-16">
                         <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -130,16 +131,19 @@ const Page = () => {
                         </p>
                     </FadeInBlur>
                     <div className="flex flex-col gap-4">
-                        <Button variant={"solid"} className="w-2/3">Consulting</Button>
-                        <Button variant={"solid"} className="w-2/3">Research</Button>
-                        <Button variant={"solid"} className="w-2/3">Community Service</Button>
+                        {services.map((service, index) => (
+                            <Button key={index} variant={"solid"} onClick={() => scrollToSection(service.id)} className="group w-2/3 flex justify-between">
+                                <p>{service.title}</p>
+                                <p className='group-hover:rotate-90 transition-all duration-300'>→</p>
+                            </Button>
+                        ))}
                     </div>
 
                 </div>
             </section>
 
             {/* Services Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 p-20">
+            {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 p-20">
                 {services.map((service, index) => (
                     <FadeInBlur key={service.id} delay={index * 100}>
                         <div style={{
@@ -164,95 +168,44 @@ const Page = () => {
                         </div>
                     </FadeInBlur>
                 ))}
-            </div>
+            </div> */}
 
             {/* Detailed Service Sections */}
             {services.map((service, index) => (
-                <section key={service.id} className={`py-20 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-                    <div className="container mx-auto px-6">
-                        <div className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                            }`}>
-                            <div className="flex-1">
-                                <FadeInBlur delay={0}>
-                                    <div className="flex items-center mb-6">
-                                        <div className="text-brand-purple mr-4">
-                                            {service.icon}
-                                        </div>
-                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
-                                            {service.title}
-                                        </h2>
-                                    </div>
-                                </FadeInBlur>
-
-                                <FadeInBlur delay={200}>
-                                    <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                                        {service.fullDescription}
-                                    </p>
-                                </FadeInBlur>
-
-                                <FadeInBlur delay={400}>
-                                    <div className="mb-8">
-                                        <h4 className="text-xl font-semibold text-gray-900 mb-4">Key Features:</h4>
-                                        <ul className="space-y-3">
-                                            {service.features.map((feature, idx) => (
-                                                <li key={idx} className="flex items-center text-gray-700">
-                                                    <div className="w-2 h-2 bg-brand-purple rounded-full mr-3"></div>
-                                                    {feature}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </FadeInBlur>
-                            </div>
-
-                            <div className="flex-1">
-                                <FadeInBlur delay={600}>
-                                    <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/80 to-brand-purple-dark/60 z-10"></div>
-                                        <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                                            <div className="text-gray-400 text-center">
-                                                <div className="text-4xl mb-2">{service.icon}</div>
-                                                <div className="text-lg font-medium">{service.title} Visual</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </FadeInBlur>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <MotionSection id={service.id} key={service.id} service={service} index={index} />
             ))}
 
             {/* Call to Action Section */}
-            <div className="w-full flex flex-col sm:flex-row relative h-[30vh] mb-20">
-                <div className='flex flex-col gap-4 w-2/3 absolute left-1/2 bottom-10 -translate-x-1/2'>
-                    <Link href={"/join"} className='flex w-full'>
-                        <Button
-                            variant="solid"
-                            className="z-2 flex justify-between items-center w-full"
-                        >
-                            <p>Join Us</p>
-                            <p>→</p>
-                        </Button>
-                    </Link>
-                    <Link href={"/join"} className='flex w-full'>
-                        <Button
-                            variant="solid"
-                            className="z-2 flex justify-between items-center w-full"
-                        >
-                            <p>Contact Us</p>
-                            <p>→</p>
-                        </Button>
-                    </Link>
-
-                </div>
-                <div className="flex justify-start sm:w-1/2 h-full w-full">
-                    <img src="/photos/home-clientbg.png" className="w-full h-full object-cover" />
-                </div>
-                <div className="flex flex-1 h-fill bg-gradient-to-r from-brand-purple-dark/100 to-brand-purple/100 justify-center p-10">
-                    <FadeInBlur delay={50} className="inline-block -translate-y-20">
-                        <p className="text-white text-2xl font-bold h-fit">Ready to partner with us?</p>
-                    </FadeInBlur>
+            <div className='h-full bg-white'>
+                <div className="w-full flex flex-col sm:flex-row relative h-[30vh] mb-20">
+                    <div className='flex flex-col gap-4 w-2/3 absolute left-1/2 bottom-10 -translate-x-1/2'>
+                        <Link href={"/join"} className='flex w-full'>
+                            <Button
+                                variant="solid"
+                                className="z-2 flex justify-between items-center w-full"
+                            >
+                                <p>Join Us</p>
+                                <p>→</p>
+                            </Button>
+                        </Link>
+                        <Link href={"/join"} className='flex w-full'>
+                            <Button
+                                variant="solid"
+                                className="z-2 flex justify-between items-center w-full"
+                            >
+                                <p>Contact Us</p>
+                                <p>→</p>
+                            </Button>
+                        </Link>
+                    </div>
+                    <div className="flex justify-start sm:w-1/2 h-full w-full">
+                        <img src="/photos/home-clientbg.png" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex flex-1 h-fill bg-gradient-to-r from-brand-purple-dark/100 to-brand-purple/100 justify-center p-10">
+                        <FadeInBlur delay={50} className="inline-block -translate-y-20">
+                            <p className="text-white text-2xl font-bold h-fit">Ready to partner with us?</p>
+                        </FadeInBlur>
+                    </div>
                 </div>
             </div>
 
