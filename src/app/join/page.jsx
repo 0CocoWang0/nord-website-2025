@@ -18,7 +18,7 @@ const Page = () => {
         <div>
             {/* Hero Section with Parallax */}
             <ParallaxContainer
-                backgroundSrc="/photos/team.JPG"
+                backgroundSrc="/photos/team.png"
                 className="h-[70vh] justify-center flex items-center pt-16"
                 speed={0.5} // adjust parallax speed if needed
                 darkOverlay={false}
