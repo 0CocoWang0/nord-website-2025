@@ -101,11 +101,10 @@ function YearToggle({ years, currentYear }) {
                     <button
                         key={year}
                         onClick={() => router.push(`/team/${year}`)}
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                            currentYear === year
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${currentYear === year
                                 ? 'bg-brand-purple text-white shadow-sm'
                                 : 'text-gray-500 hover:text-brand-navy'
-                        }`}
+                            }`}
                     >
                         {year}
                     </button>
@@ -162,7 +161,7 @@ export default function TeamContent({ teams, availableYears, currentYear }) {
                 backgroundSrc="/photos/serious-team-pic.JPG"
                 className="h-[70vh] justify-start flex items-center pt-16"
                 speed={0.5}
-                darkOverlay={true}
+                darkOverlay={false}
             >
                 <div className="container px-20 relative z-10 text-left">
                     <FadeInBlur className='-translate-y-20'>
