@@ -37,7 +37,7 @@ export default function Navigation() {
 
     const navItems = [
         { href: "/landing", label: "Home", isActive: true },
-        //{ href: "/about", label: "About Us" },
+        { href: "/team", label: "Our Team" },
         { href: "/services", label: "Our Services" },
         //{ href: "/news", label: "News & Events" },
         { href: "/join", label: "Join Us" },

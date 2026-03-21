@@ -102,11 +102,11 @@ const Page = () => {
             {/* Hero Section with Parallax */}
             <ParallaxContainer
                 backgroundSrc="/photos/servicebg.png"
-                className="h-[70vh] justify-center flex items-center pt-16"
+                className="h-[70vh] justify-start flex items-center"
                 speed={0.5} // adjust parallax speed if needed
                 darkOverlay={false}
             >
-                <div className="container px-20 relative z-10 text-left">
+                <div className="px-20 relative z-10 text-left">
                     <FadeInBlur className='-translate-y-20'>
                         <h1 className="font-bold mb-6 text-white">
                             Our Services
