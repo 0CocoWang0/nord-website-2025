@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
+import { useRouter } from 'next/navigation'
 import { Mail } from 'lucide-react'
 import Image from 'next/image'
 import ParallaxContainer from '../components/ParallaxBox'
@@ -90,16 +91,18 @@ function TeamSection({ title, subtitle, members }) {
     )
 }
 
-function YearToggle({ years, selectedYear, onSelect }) {
+function YearToggle({ years, currentYear }) {
+    const router = useRouter()
+
     return (
         <div className="flex justify-center py-8 px-6">
             <div className="inline-flex rounded-full bg-gray-100 p-1">
                 {years.map((year) => (
                     <button
                         key={year}
-                        onClick={() => onSelect(year)}
+                        onClick={() => router.push(`/team/${year}`)}
                         className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                            selectedYear === year
+                            currentYear === year
                                 ? 'bg-brand-purple text-white shadow-sm'
                                 : 'text-gray-500 hover:text-brand-navy'
                         }`}
@@ -152,17 +155,14 @@ function TeamSections({ teams }) {
     )
 }
 
-export default function TeamContent({ allYearsData, availableYears, defaultYear }) {
-    const [selectedYear, setSelectedYear] = useState(defaultYear);
-    const teams = allYearsData[selectedYear] || {};
-
+export default function TeamContent({ teams, availableYears, currentYear }) {
     return (
         <div className='bg-white'>
             <ParallaxContainer
                 backgroundSrc="/photos/serious-team-pic.JPG"
                 className="h-[70vh] justify-start flex items-center pt-16"
                 speed={0.5}
-                darkOverlay={false}
+                darkOverlay={true}
             >
                 <div className="container px-20 relative z-10 text-left">
                     <FadeInBlur className='-translate-y-20'>
@@ -178,8 +178,7 @@ export default function TeamContent({ allYearsData, availableYears, defaultYear 
 
             <YearToggle
                 years={availableYears}
-                selectedYear={selectedYear}
-                onSelect={setSelectedYear}
+                currentYear={currentYear}
             />
 
             <TeamSections teams={teams} />

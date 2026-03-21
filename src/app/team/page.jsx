@@ -1,15 +1,6 @@
-import { getAllYearsTeamData, AVAILABLE_YEARS, DEFAULT_YEAR } from '@/lib/notion'
-import TeamContent from './TeamContent'
+import { redirect } from 'next/navigation'
+import { DEFAULT_YEAR } from '@/lib/notion'
 
-export const revalidate = 60
-
-export default async function TeamPage() {
-    const allYearsData = await getAllYearsTeamData()
-    return (
-        <TeamContent
-            allYearsData={allYearsData}
-            availableYears={AVAILABLE_YEARS}
-            defaultYear={DEFAULT_YEAR}
-        />
-    )
+export default function TeamPage() {
+    redirect(`/team/${DEFAULT_YEAR}`)
 }
