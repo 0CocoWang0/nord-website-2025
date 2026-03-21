@@ -1,18 +1,25 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Mail } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Mail, ArrowUp } from 'lucide-react'
 import Image from 'next/image'
 import ParallaxContainer from '../components/ParallaxBox'
-import { FadeInBlur, StaggeredFadeIn } from '../components/animations/FadeInBlur'
+import { FadeInBlur } from '../components/animations/FadeInBlur'
 
 function MemberCard({ name, role, email, photo }) {
     return (
         <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="aspect-square bg-gradient-to-br from-purple-100 to-indigo-100 flex items-center justify-center relative overflow-hidden">
                 {photo ? (
-                    <Image src={photo} alt={name} fill className="object-cover object-top" />
+                    <Image
+                        src={photo}
+                        alt={name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover object-top"
+                    />
                 ) : (
                     <span className="text-5xl font-bold text-brand-purple/20">
                         {name.split(' ').map(n => n[0]).join('')}
@@ -40,30 +47,26 @@ function ExecutiveSection({ presidents, directors }) {
     return (
         <section className="py-14 px-6">
             <div className="container mx-auto max-w-7xl">
-                <FadeInBlur>
-                    <div className="mb-8">
-                        <h2 className="text-brand-navy">Executive Team</h2>
-                        <p className="body1 text-gray-500 mt-2">Leading NORD Consulting.</p>
+                <div className="mb-8">
+                    <h2 className="text-brand-navy">Executive Team</h2>
+                    <p className="body1 text-gray-500 mt-2">Leading NORD Consulting.</p>
+                </div>
+                {presidents.length > 0 && (
+                    <div className="flex flex-col sm:flex-row justify-center gap-5 mb-6">
+                        {presidents.map((member) => (
+                            <div key={member.name} className="w-full sm:w-1/2 lg:w-1/4">
+                                <MemberCard {...member} />
+                            </div>
+                        ))}
                     </div>
-                </FadeInBlur>
-                <StaggeredFadeIn>
-                    {presidents.length > 0 && (
-                        <div className="flex justify-center gap-5 mb-6">
-                            {presidents.map((member) => (
-                                <div key={member.name} className="w-full sm:w-1/2 lg:w-1/4">
-                                    <MemberCard {...member} />
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                    {directors.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {directors.map((member) => (
-                                <MemberCard key={member.name} {...member} />
-                            ))}
-                        </div>
-                    )}
-                </StaggeredFadeIn>
+                )}
+                {directors.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        {directors.map((member) => (
+                            <MemberCard key={member.name} {...member} />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     )
@@ -73,19 +76,15 @@ function TeamSection({ title, subtitle, members }) {
     return (
         <section className="py-14 px-6">
             <div className="container mx-auto max-w-7xl">
-                <FadeInBlur>
-                    <div className="mb-8">
-                        <h2 className="text-brand-navy">{title}</h2>
-                        {subtitle && <p className="body1 text-gray-500 mt-2">{subtitle}</p>}
-                    </div>
-                </FadeInBlur>
-                <StaggeredFadeIn>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        {members.map((member) => (
-                            <MemberCard key={member.name + (member.role || '')} {...member} />
-                        ))}
-                    </div>
-                </StaggeredFadeIn>
+                <div className="mb-8">
+                    <h2 className="text-brand-navy">{title}</h2>
+                    {subtitle && <p className="body1 text-gray-500 mt-2">{subtitle}</p>}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    {members.map((member) => (
+                        <MemberCard key={member.name + (member.role || '')} {...member} />
+                    ))}
+                </div>
             </div>
         </section>
     )
@@ -96,21 +95,53 @@ function YearToggle({ years, currentYear }) {
 
     return (
         <div className="flex justify-center py-8 px-6">
-            <div className="inline-flex rounded-full bg-gray-100 p-1">
+            <div className="inline-flex rounded-full bg-gray-100 p-1 relative">
                 {years.map((year) => (
                     <button
                         key={year}
                         onClick={() => router.push(`/team/${year}`)}
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${currentYear === year
-                                ? 'bg-brand-purple text-white shadow-sm'
-                                : 'text-gray-500 hover:text-brand-navy'
-                            }`}
+                        className="relative px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200 z-10"
+                        style={{ color: currentYear === year ? 'white' : undefined }}
                     >
-                        {year}
+                        {currentYear === year && (
+                            <motion.div
+                                layoutId="year-toggle"
+                                className="absolute inset-0 bg-brand-purple rounded-full shadow-sm"
+                                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                            />
+                        )}
+                        <span className="relative z-10">{year}</span>
                     </button>
                 ))}
             </div>
         </div>
+    )
+}
+
+function ScrollToTop() {
+    const [visible, setVisible] = useState(false)
+
+    useEffect(() => {
+        const onScroll = () => setVisible(window.scrollY > 500)
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
+
+    return (
+        <AnimatePresence>
+            {visible && (
+                <motion.button
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="fixed bottom-6 right-6 z-50 bg-brand-purple text-white p-3 rounded-full shadow-lg hover:bg-brand-dark-purple transition-colors"
+                    aria-label="Scroll to top"
+                >
+                    <ArrowUp size={20} />
+                </motion.button>
+            )}
+        </AnimatePresence>
     )
 }
 
@@ -161,7 +192,7 @@ export default function TeamContent({ teams, availableYears, currentYear }) {
                 backgroundSrc="/photos/serious-team-pic.JPG"
                 className="h-[70vh] justify-start flex items-center pt-16"
                 speed={0.5}
-                darkOverlay={false}
+                darkOverlay={true}
             >
                 <div className="container px-20 relative z-10 text-left">
                     <FadeInBlur className='-translate-y-20'>
@@ -181,6 +212,7 @@ export default function TeamContent({ teams, availableYears, currentYear }) {
             />
 
             <TeamSections teams={teams} />
+            <ScrollToTop />
         </div>
     )
 }

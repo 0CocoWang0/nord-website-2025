@@ -1,6 +1,16 @@
-// src/app/page.jsx
-import { redirect } from "next/navigation";
+import HeroSection from "./components/landing/HeroSection.jsx";
+import AboutSection from "./components/landing/AboutSection.jsx";
+import ServicesSection from "./components/landing/ServiceSection.jsx";
 
 export default function Home() {
-  redirect("/landing");
+  return (
+    <div
+      className="bg-white text-gray-900 overflow-x-hidden"
+      style={{ fontFamily: "Futura, system-ui, sans-serif" }}
+    >
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+    </div>
+  );
 }

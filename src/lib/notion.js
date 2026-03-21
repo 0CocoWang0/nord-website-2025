@@ -100,12 +100,13 @@ export async function getTeamMembers(year = DEFAULT_YEAR) {
 
   const members = allPages.map((page) => {
     const props = page.properties;
+    const hasPhoto = getPropertyValue(props["Profile Picture"]);
     return {
       name: getPropertyValue(props.Name),
       role: getPropertyValue(props.Role),
       email: getPropertyValue(props.Email),
       team: getPropertyValue(props.Team),
-      photo: getPropertyValue(props["Profile Picture"]),
+      photo: hasPhoto ? `/api/team-photo/${page.id}` : "",
     };
   });
 
