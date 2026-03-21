@@ -101,7 +101,7 @@ function YearToggle({ years, currentYear }) {
                         key={year}
                         onClick={() => router.push(`/team/${year}`)}
                         className="relative px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200 z-10"
-                        style={{ color: currentYear === year ? 'white' : undefined }}
+                        style={{ color: currentYear === year ? 'white' : '#6b7280' }}
                     >
                         {currentYear === year && (
                             <motion.div
