@@ -1,5 +1,13 @@
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
-const DATABASE_ID = process.env.NOTION_TEAM_DATABASE_ID;
+
+// Map each year to its Notion database ID
+// Add new years here as you create new databases
+const YEAR_DATABASES = {
+    "2025-2026": process.env.NOTION_TEAM_DATABASE_ID,
+};
+
+export const AVAILABLE_YEARS = Object.keys(YEAR_DATABASES).sort().reverse();
+export const DEFAULT_YEAR = AVAILABLE_YEARS[0];
 
 const TEAM_ORDER = [
     "Executive Team",
@@ -47,12 +55,12 @@ function getPropertyValue(property) {
     }
 }
 
-async function queryDatabase(startCursor) {
+async function queryDatabase(databaseId, startCursor) {
     const body = { page_size: 100 };
     if (startCursor) body.start_cursor = startCursor;
 
     const res = await fetch(
-        `https://api.notion.com/v1/databases/${DATABASE_ID}/query`,
+        `https://api.notion.com/v1/databases/${databaseId}/query`,
         {
             method: "POST",
             headers: {
@@ -71,11 +79,16 @@ async function queryDatabase(startCursor) {
     return res.json();
 }
 
-export async function getTeamMembers() {
+export async function getTeamMembers(year = DEFAULT_YEAR) {
+    const databaseId = YEAR_DATABASES[year];
+    if (!databaseId) {
+        throw new Error(`No database configured for year: ${year}`);
+    }
+
     let allPages = [];
     let cursor;
     do {
-        const data = await queryDatabase(cursor);
+        const data = await queryDatabase(databaseId, cursor);
         allPages.push(...data.results);
         cursor = data.has_more ? data.next_cursor : null;
     } while (cursor);
@@ -104,4 +117,14 @@ export async function getTeamMembers() {
     }
 
     return grouped;
+}
+
+export async function getAllYearsTeamData() {
+    const results = {};
+    await Promise.all(
+        AVAILABLE_YEARS.map(async (year) => {
+            results[year] = await getTeamMembers(year);
+        })
+    );
+    return results;
 }
