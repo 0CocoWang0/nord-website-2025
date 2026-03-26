@@ -46,7 +46,7 @@ function ScrollBanner({ logos, reverse = false, size = 100 }) {
 
 export default function Placements() {
     return (
-        <div className="pt-20 pb-10">
+        <div className="pt-30 sm:pt-20 pb-10">
             <div className="container mx-auto px-6">
                 <div className="text-left mb-10 sm:mb-16">
                     <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
