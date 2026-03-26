@@ -2,6 +2,7 @@
 import { Button } from "../Buttons";
 import Link from "next/link";
 import Clients from "./Clients";
+import Placements from "./Placements";
 import { useState } from "react";
 import NordFull from "../../../assets/nord_full.svg";
 
@@ -143,6 +144,7 @@ export default function ServicesSection() {
 
 
             <Clients />
+            <Placements />
 
         </section>
     );
